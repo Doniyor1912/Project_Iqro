@@ -1,5 +1,4 @@
 import os
-import xmlrpc.client
 from datetime import timedelta
 from django.utils.translation import gettext_lazy as _
 
@@ -33,17 +32,20 @@ INSTALLED_APPS += [
     'rest_framework',
     'django_filters',
 ]
-#corsheaders
-INSTALLED_APPS += ['corsheaders', ]
 
-# apps
 INSTALLED_APPS += [
     'api',
     'about',
     'homepage',
     'project',
     'contact',
+    'common',
 ]
+#corsheaders
+INSTALLED_APPS += ['corsheaders', ]
+
+# apps
+
 
 #JWT
 INSTALLED_APPS += [
@@ -57,7 +59,10 @@ INSTALLED_APPS += [
     'modeltranslation',
 ]
 
-# INSTALLED_APPS += ['storages',]
+INSTALLED_APPS += [
+    'storages',
+    'phonenumbers',
+]
 
 
 MINIO_STORAGE_ENDPOINT = env.str("MINIO_STORAGE_ENDPOINT", "")

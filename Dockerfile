@@ -1,17 +1,20 @@
-FROM python:3.9
+FROM python:3.10-slim
+RUN mkdir /app
 
-RUN mkdir project
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    python3-dev \
+    libjpeg-dev \
+    zlib1g-dev \
+    && apt-get clean
 
-WORKDIR /project
+WORKDIR /app
 
+COPY requirements.txt .
 
-RUN apt-get update \
-    && apt-get -y install libpq-dev gcc \
-    && pip install django
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
 EXPOSE 8000
-
-ENTRYPOINT ["docker-entrypoint.sh"]
